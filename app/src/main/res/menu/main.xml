@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:title="@string/orderBy"
+        app:showAsAction="always"
+        android:id="@+id/action_orderBy" />
+    <group android:id="@+id/sortGroup" android:checkableBehavior="single">
+        <item
+            android:title="@string/mostPopular"
+            android:orderInCategory="1"
+            android:checkable="true"
+            app:showAsAction="never"
+            android:id="@+id/action_popular" />
+        <item
+            android:title="@string/topRated"
+            android:orderInCategory="2"
+            android:checkable="true"
+            app:showAsAction="never"
+            android:id="@+id/action_topRated" />
+    </group>
+
+</menu>
