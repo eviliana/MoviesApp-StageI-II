@@ -20,10 +20,19 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
 
     private Context mContext;
     private ArrayList<Movie> mMovies;
+    private MoviePosterClickListener mOnClickListener;
 
-    public MovieRecyclerAdapter(Context context, ArrayList<Movie> moviesList) {
-        this.mContext = context;
-        this.mMovies = moviesList;
+    public MovieRecyclerAdapter (Context context, ArrayList<Movie> moviesList, MoviePosterClickListener listener){
+        mContext = context;
+        mMovies = moviesList;
+        mOnClickListener = listener;
+    }
+
+    /**
+     * This interface handles the poster clicks
+     */
+    public interface MoviePosterClickListener {
+        void onMoviePosterClick(int clickedPosterId);
     }
 
     @Override
@@ -76,7 +85,9 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
 
         @Override
         public void onClick(View view) {
-            //if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            int clickedPosition = getAdapterPosition();
+            mOnClickListener.onMoviePosterClick(clickedPosition);
         }
     }
+
 }

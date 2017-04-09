@@ -5,6 +5,7 @@ import com.project1.eviliana.popularmoviesapp.adapter.MovieRecyclerAdapter;
 import com.project1.eviliana.popularmoviesapp.model.Movie;
 import com.project1.eviliana.popularmoviesapp.utils.*;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,13 +23,12 @@ import java.net.URL;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MovieRecyclerAdapter.MoviePosterClickListener{
 
     ArrayList<Movie> moviesList;
     private MovieRecyclerAdapter mAdapter;
     private RecyclerView mRecyclerView;
-    private boolean mPopular;
-    private boolean mTop;
+    protected final static String MOVIE_ITEM = "movie_item";
     private Context context = MainActivity.this;
 
     @Override
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.posters_recycler);
 
         int numberOfColumns = 2; //2 columns for the GridLayoutManager
-        GridLayoutManager layoutManager = new GridLayoutManager(this, numberOfColumns);
+        GridLayoutManager layoutManager = new GridLayoutManager(context, numberOfColumns);
 
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
@@ -53,8 +53,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         if(moviesList != null){
-            mAdapter = new MovieRecyclerAdapter(this, moviesList);
-            mRecyclerView.setAdapter(mAdapter);
+            populateAdapter();
         }
         if (moviesList.size() == 0){
             if (NetworkUtils.hasNetworkAcces(this)){
@@ -68,6 +67,14 @@ public class MainActivity extends AppCompatActivity {
     private void loadPosters() {
         fetchMovieData("popular");
     }
+
+    /**
+     * This is a workaround to help me pass click listener in onPostExecute :)
+     */
+    private void populateAdapter(){
+        mAdapter = new MovieRecyclerAdapter(context, moviesList, this);
+        mRecyclerView.setAdapter(mAdapter);
+    }
     /**
      * Get menu selection and build the url for the http call
      * Also, this where we pass user's api key for tmdb
@@ -80,16 +87,6 @@ public class MainActivity extends AppCompatActivity {
         AsyncTaskCall at = new AsyncTaskCall();
         at.execute(movieQueryUrl);
     }
-    /**
-     *@param ClickedPosterID the movie ID of the poster we clicked
-     */
-   /* @Override
-    public void onClick ( int ClickedPosterID){
-            Context context = this;
-            Class destinationClass = MovieDetailsActivity.class;
-            Intent intentToStartMovieDetailsActivity = new Intent(context, destinationClass);
-            intentToStartMovieDetailsActivity.putExtra(Intent.EXTRA_TEXT, ClickedPosterID);
-    }*/
 
     /**
      * We inflate our options menu
@@ -100,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         menu.findItem(R.id.action_popular).setChecked(true);
-//        menu.setGroupVisible(R.id.sortGroup,true);
         return true;
     }
 
@@ -120,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
                    }
                 } else {
                     Toast.makeText(context,"Internet connection failed, please try again",Toast.LENGTH_SHORT).show();
+                    //mRecyclerView.setAdapter(null); in case we want to clear the images from previous call
                 }
                 break;
             case R.id.action_topRated:
@@ -130,10 +127,19 @@ public class MainActivity extends AppCompatActivity {
                     }
                 } else {
                     Toast.makeText(context,"Internet connection failed, please try again",Toast.LENGTH_SHORT).show();
+                    //mRecyclerView.setAdapter(null); in case we want to clear the images from previous call
                 }
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onMoviePosterClick(int clickedPosterId) {
+        Class destinationClass = DetailsActivity.class;
+        Intent intentToStartDetailsActivity = new Intent(context, destinationClass);
+        intentToStartDetailsActivity.putExtra(MOVIE_ITEM, moviesList.get(clickedPosterId));
+        startActivity(intentToStartDetailsActivity);
     }
 
     /**
@@ -175,9 +181,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(ArrayList<Movie> moviesList) {
             if (moviesList != null && !moviesList.equals("")) {
-                mAdapter = new MovieRecyclerAdapter(context, moviesList);
-                mRecyclerView.setAdapter(mAdapter);
-
+                populateAdapter();
             }
         }
     }
