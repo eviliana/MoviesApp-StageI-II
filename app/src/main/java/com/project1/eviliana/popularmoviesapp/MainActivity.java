@@ -12,6 +12,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import org.json.JSONException;
@@ -25,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Movie> moviesList;
     private MovieRecyclerAdapter mAdapter;
     private RecyclerView mRecyclerView;
-    private ProgressBar mLoadingIndicator;
-    private boolean networkOk;
     private boolean mPopular;
     private boolean mTop;
     private Context context = MainActivity.this;
@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        networkOk = NetworkUtils.hasNetworkAcces(this);
         moviesList = new ArrayList<>();
         mRecyclerView = (RecyclerView) findViewById(R.id.posters_recycler);
 
@@ -47,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
     }
 
+    /**
+     * The reason i don't store hasNetworkAcces results in a var
+     * is mainly because in this way, i always get real time connectivity check :P
+     */
     @Override
     protected void onResume() {
         if(moviesList != null){
@@ -54,10 +57,10 @@ public class MainActivity extends AppCompatActivity {
             mRecyclerView.setAdapter(mAdapter);
         }
         if (moviesList.size() == 0){
-            if (networkOk){
+            if (NetworkUtils.hasNetworkAcces(this)){
                 loadPosters();
             } else {
-                Toast.makeText(context,"Internet connection failed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Internet connection failed, please try again",Toast.LENGTH_SHORT).show();
             }
         }
         super.onResume();
@@ -96,35 +99,37 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-//        menu.findItem(R.id.action_popular).setChecked(true);
+        menu.findItem(R.id.action_popular).setChecked(true);
 //        menu.setGroupVisible(R.id.sortGroup,true);
-
         return true;
     }
 
     /**
-     * Here is what happens when we choose a menu action
-     *
+     * Choose a menu action and pass the parameter for the query
      * @param item
      * @return
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        //check which menu item is selected
         switch (item.getItemId()) {
             case R.id.action_popular:
-                if (networkOk){
+               if (NetworkUtils.hasNetworkAcces(this)){
                     fetchMovieData("popular");
+                   if(!item.isChecked()){
+                       item.setChecked(true);
+                   }
                 } else {
-                    Toast.makeText(context,"Internet connection failed",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"Internet connection failed, please try again",Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.action_topRated:
-                if (networkOk){
+                if (NetworkUtils.hasNetworkAcces(this)){
                     fetchMovieData("top_rated");
+                    if(!item.isChecked()){
+                        item.setChecked(true);
+                    }
                 } else {
-                    Toast.makeText(context,"Internet connection failed",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"Internet connection failed, please try again",Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
@@ -141,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(context, "The data is downloading", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "The data is downloading", Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -172,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
             if (moviesList != null && !moviesList.equals("")) {
                 mAdapter = new MovieRecyclerAdapter(context, moviesList);
                 mRecyclerView.setAdapter(mAdapter);
+
             }
         }
     }

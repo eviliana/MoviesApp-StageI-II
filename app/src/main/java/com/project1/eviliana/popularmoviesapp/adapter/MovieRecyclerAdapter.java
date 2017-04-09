@@ -2,22 +2,19 @@ package com.project1.eviliana.popularmoviesapp.adapter;
 
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.project1.eviliana.popularmoviesapp.MainActivity;
 import com.project1.eviliana.popularmoviesapp.R;
 import com.project1.eviliana.popularmoviesapp.model.Movie;
 import com.project1.eviliana.popularmoviesapp.utils.Queries;
 import com.squareup.picasso.Picasso;
 
-import java.net.URL;
 import java.util.ArrayList;
+
 
 public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdapter.NumberViewHolder> {
 
@@ -49,12 +46,13 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
      */
     @Override
     public void onBindViewHolder(NumberViewHolder holder, int position) {
+
             String posPath = mMovies.get(position).getPosterPath().toString();
             String url = Queries.POSTERS_BASE_URL_185 + posPath;
             Picasso.with(mContext)
                     .load(url)
-                    .error(R.drawable.movie_icon_15138)
-                    .placeholder(R.drawable.movie_icon_15138)
+                    .placeholder(R.drawable.loading_icon)
+                    .error(R.drawable.nodisplay)
                     .into(holder.PosterItemNumberView);
     }
 

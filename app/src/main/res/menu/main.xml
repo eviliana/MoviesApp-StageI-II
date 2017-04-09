@@ -5,17 +5,17 @@
         android:title="@string/orderBy"
         app:showAsAction="always"
         android:id="@+id/action_orderBy" />
-    <group android:id="@+id/sortGroup" android:checkableBehavior="single">
+    <group android:checkableBehavior="single">
         <item
             android:title="@string/mostPopular"
             android:orderInCategory="1"
-            android:checkable="true"
+            android:checked="false"
             app:showAsAction="never"
             android:id="@+id/action_popular" />
         <item
             android:title="@string/topRated"
             android:orderInCategory="2"
-            android:checkable="true"
+            android:checked="false"
             app:showAsAction="never"
             android:id="@+id/action_topRated" />
     </group>

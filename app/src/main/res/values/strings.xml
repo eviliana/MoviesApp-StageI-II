@@ -4,6 +4,4 @@
     <string name="mostPopular">Most Popular</string>
     <string name="topRated">Top Rated</string>
     <string name="myApiKey">Your key here</string>
-    <string name="connectivity_error">Internet connection failed</string>
-    <string name="error_message">Failed to get results, please try again</string>
 </resources>
