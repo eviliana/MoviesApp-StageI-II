@@ -60,16 +60,16 @@
                                 android:paddingTop="20dp"
                                 android:paddingLeft="5dp"
                                 android:layout_weight="1"
-                                android:textSize="@dimen/abc_text_size_medium_material" />
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/date_display"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingTop="5dp"
-                                android:paddingLeft="5dp"
+                                android:paddingLeft="2dp"
                                 android:layout_weight="1"
-                                android:textSize="@dimen/abc_text_size_medium_material" />
+                                android:textSize="16sp" />
                             </LinearLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -86,15 +86,15 @@
                                 android:paddingTop="20dp"
                                 android:paddingLeft="5dp"
                                 android:layout_weight="1"
-                                android:textSize="@dimen/abc_text_size_medium_material" />
+                                android:textSize="16sp" />
                             <TextView
                                 android:id="@+id/rating_display"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingTop="5dp"
-                                android:paddingLeft="5dp"
-                                android:layout_weight="1"
-                                android:textSize="@dimen/abc_text_size_medium_material" />
+                                android:paddingLeft="2dp"
+                                android:layout_weight="0"
+                                android:textSize="16sp" />
                     </LinearLayout>
                     <RatingBar
                         android:id="@+id/simpleRatingBar"
