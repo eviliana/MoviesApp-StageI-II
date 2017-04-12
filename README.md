@@ -14,3 +14,5 @@ The app meets the following specification:
         release date
         
 !Important : Please provide your own TMDB API key in res/values/strings.xml
+
+[![Alt text](https://img.youtube.com/vi/LmJseRK5E9g/0.jpg)](https://www.youtube.com/watch?v=LmJseRK5E9g)
