@@ -4,4 +4,8 @@
     <string name="mostPopular">Most Popular</string>
     <string name="topRated">Top Rated</string>
     <string name="myApiKey">Your key here</string>
+    <string name="actDetails">Movie Details</string>
+    <string name="summary">Summary</string>
+    <string name="rating">Users rating:</string>
+    <string name="date">Release year:</string>
 </resources>

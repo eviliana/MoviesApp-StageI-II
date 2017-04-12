@@ -1,52 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:id="@+id/activity_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context="com.project1.eviliana.popularmoviesapp.DetailsActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/title_display"/>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/poster_display"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/date_display"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rating_display"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
             <TextView
-                android:id="@+id/plot_summary"
+                android:id="@+id/title_display"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Plot summary" />
-
-            <TextView
-                android:id="@+id/plot_display"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:gravity="center"
+                android:textSize="@dimen/abc_text_size_headline_material"/>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="250dp" />
+                android:orientation="horizontal"
+                android:weightSum="2">
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/poster_display"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:paddingTop="10dp"
+                    android:adjustViewBounds="true"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/date"
+                                android:id="@+id/text_date"
+                                android:paddingTop="20dp"
+                                android:paddingLeft="5dp"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/abc_text_size_medium_material" />
+
+                            <TextView
+                                android:id="@+id/date_display"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="5dp"
+                                android:paddingLeft="5dp"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/abc_text_size_medium_material" />
+                            </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="20dp"
+                        android:weightSum="2">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/rating"
+                                android:id="@+id/text_rating"
+                                android:paddingTop="20dp"
+                                android:paddingLeft="5dp"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/abc_text_size_medium_material" />
+                            <TextView
+                                android:id="@+id/rating_display"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="5dp"
+                                android:paddingLeft="5dp"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/abc_text_size_medium_material" />
+                    </LinearLayout>
+                    <RatingBar
+                        android:id="@+id/simpleRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:stepSize="1"
+                        android:paddingTop="5dp"
+                        android:paddingLeft="8dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/plot_display"
+                    android:text="@string/summary"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_margin="3dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/plot_summary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/abc_text_size_medium_material" />
+
+                </ScrollView>
+            </LinearLayout>
+        </LinearLayout>
     </ScrollView>
-
-
-</RelativeLayout>
+</LinearLayout>
