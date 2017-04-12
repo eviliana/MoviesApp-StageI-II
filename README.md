@@ -15,4 +15,6 @@ The app meets the following specification:
         
 !Important : Please provide your own TMDB API key in res/values/strings.xml
 
+Click the image for a preview of the app
+
 [![Alt text](https://img.youtube.com/vi/LmJseRK5E9g/0.jpg)](https://www.youtube.com/watch?v=LmJseRK5E9g)
