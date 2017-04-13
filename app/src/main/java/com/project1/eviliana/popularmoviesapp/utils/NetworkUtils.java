@@ -4,12 +4,6 @@ package com.project1.eviliana.popularmoviesapp.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
-import android.widget.Toast;
-import android.support.v7.app.AppCompatActivity;
-
-import com.project1.eviliana.popularmoviesapp.MainActivity;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -47,7 +41,7 @@ public class NetworkUtils {
      * @throws IOException
      */
     public static String getResponseFromHttpUrl(URL url) throws IOException {
-        Log.d("NETWORK","I made it!");
+
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try{
             InputStream in = urlConnection.getInputStream();

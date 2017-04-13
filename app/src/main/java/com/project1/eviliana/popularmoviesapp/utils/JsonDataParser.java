@@ -1,17 +1,10 @@
 package com.project1.eviliana.popularmoviesapp.utils;
 
-import android.content.Context;
-
 import com.project1.eviliana.popularmoviesapp.model.Movie;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  * This class is a JSON parser for the movie data.
@@ -32,9 +25,6 @@ public class JsonDataParser {
         final String MOVIE_VOTE_AVERAGE = "vote_average";
 
         ArrayList<Movie> movies = new ArrayList<>();
-
-        //Date dateObject;
-        //SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
 
         JSONObject root = new JSONObject(JSON);
         JSONArray results = root.getJSONArray(JSON_ROOT_ARRAY);

@@ -13,7 +13,6 @@ public class Queries {
 
     final static String MOVIES_BASE_URL = "http://api.themoviedb.org/3/movie/";
     public final static String POSTERS_BASE_URL_185 = "http://image.tmdb.org/t/p/w185/";
-    public final static String POSTERS_BASE_URL_342 = "http://image.tmdb.org/t/p/w342/";
     final static String API_KEY = "api_key";
 
     /**
@@ -37,22 +36,4 @@ public class Queries {
         }
         return url;
     }
-
-   /* public static String buildImageUrl(String posterPath){
-        //int length = posterPath.length();
-        //String removeDash = posterPath.substring(1,length);
-        String url = POSTERS_BASE_URL + posterPath;
-        return url;
-        /*Uri builtUri = Uri.parse(POSTERS_BASE_URL).buildUpon()
-                .appendPath(removeDash)
-                .build();
-
-        URL url = null;
-        try{
-            url = new URL(builtUri.toString());
-        }catch (MalformedURLException e){
-            e.printStackTrace();
-        }
-        return url;
-    }*/
 }

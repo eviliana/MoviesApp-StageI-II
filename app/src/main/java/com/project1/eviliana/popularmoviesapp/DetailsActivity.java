@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
-import android.media.Rating;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.project1.eviliana.popularmoviesapp.model.Movie;
 import com.project1.eviliana.popularmoviesapp.utils.Queries;
 import com.squareup.picasso.Picasso;
@@ -22,15 +20,10 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView mTitle;
     private TextView mDate;
     private TextView mRating;
-    private TextView mPlotTitle;
     private TextView mPlotSummary;
     private ImageView mPoster;
     private RatingBar mRatingBar;
-    private TextView mTextDate;
-    private TextView mTextRating;
     private Movie movieItem;
-    private LayerDrawable stars;
-    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +33,12 @@ public class DetailsActivity extends AppCompatActivity {
         mTitle = (TextView) findViewById(R.id.title_display);
         mDate = (TextView) findViewById(R.id.date_display);
         mRating = (TextView) findViewById(R.id.rating_display);
-        mPlotTitle = (TextView) findViewById(R.id.plot_display);
+        TextView mPlotTitle = (TextView) findViewById(R.id.plot_display);
         mPlotSummary = (TextView) findViewById(R.id.plot_summary);
         mPoster = (ImageView) findViewById(R.id.poster_display);
         mRatingBar = (RatingBar) findViewById(R.id.simpleRatingBar);
-        mTextDate = (TextView) findViewById(R.id.text_date);
-        mTextRating = (TextView) findViewById(R.id.text_rating);
+        TextView mTextDate = (TextView) findViewById(R.id.text_date);
+        TextView mTextRating = (TextView) findViewById(R.id.text_rating);
         //Change the stars color in ratingBar to yellow
         LayerDrawable stars = (LayerDrawable) mRatingBar.getProgressDrawable();
         stars.getDrawable(2).setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
