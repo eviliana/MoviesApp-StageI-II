@@ -17,4 +17,4 @@ The app meets the following specification:
 
 Click the image for a preview of the app
 
-[![Alt text](https://img.youtube.com/vi/LmJseRK5E9g/0.jpg)](https://www.youtube.com/watch?v=LmJseRK5E9g)
+[![Alt text](https://img.youtube.com/vi/zW0mJGwVHRo/0.jpg)](https://www.youtube.com/watch?v=zW0mJGwVHRo)
