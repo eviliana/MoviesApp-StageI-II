@@ -1,3 +1,5 @@
+#Popular Movies App (stage I)
+---
 This is my project for Popular Movies App (stage I) of Udacity's Associate Android Developer Fast Track.The app meets the following specifications:
 
 #### User Interface - Layout ####
