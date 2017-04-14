@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:id="@+id/activity_details"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    tools:context="com.project1.eviliana.popularmoviesapp.DetailsActivity">
-
-    <ScrollView
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -19,8 +11,8 @@
                 android:id="@+id/title_display"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp"
+                android:paddingBottom="@dimen/pad_5"
+                android:paddingTop="@dimen/pad_5"
                 android:gravity="center"
                 android:textSize="@dimen/abc_text_size_headline_material"/>
 
@@ -30,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="5dp">
+                android:padding="@dimen/pad_5">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -40,23 +32,17 @@
                     android:textSize="@dimen/abc_text_size_medium_material" />
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_margin="3dp"
+                    android:layout_height="@dimen/pad_2"
+                    android:layout_margin="@dimen/pad_3"
                     android:background="@color/colorPrimaryDark"
                     android:textSize="@dimen/abc_text_size_medium_material" />
 
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/plot_summary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
 
-                    <TextView
-                        android:id="@+id/plot_summary"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/abc_text_size_medium_material" />
-
-                </ScrollView>
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+</ScrollView>

@@ -52,9 +52,7 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerAdap
      */
     @Override
     protected void onResume() {
-        if(moviesList != null){
-            populateAdapter();
-        }
+        super.onResume();
         if (moviesList.size() == 0){
             if (NetworkUtils.hasNetworkAcces(this)){
                 loadPosters();
@@ -62,7 +60,6 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerAdap
                 Toast.makeText(context,"Internet connection failed, please try again",Toast.LENGTH_SHORT).show();
             }
         }
-        super.onResume();
     }
     private void loadPosters() {
         fetchMovieData("popular");
