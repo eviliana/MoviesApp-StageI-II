@@ -14,7 +14,7 @@ This is my project for Popular Movies App (stage I) of Udacity's Associate Andro
 - [x] In a background thread, app queries the /movie/popular or /movie/top_rated API for the sort criteria specified in the settings menu.
 
 _Comments by reviewer_ : 
-> In my perspective, you have done a perfect job implementing popular movie stage 1 and the format of your codes is extremely standard and your codes are easy to be understood. Great job foryour popular movie stage 1! Hope to see your stage 2 codes soon! :)
+> In my perspective, you have done a perfect job implementing popular movie stage 1 and the format of your code is extremely standard and easy to be understood. Great job for your popular movie stage 1! Hope to see your stage 2 code soon! :)
  
  
 __!Important : Please provide your own TMDB API key in res/values/strings.xml__
