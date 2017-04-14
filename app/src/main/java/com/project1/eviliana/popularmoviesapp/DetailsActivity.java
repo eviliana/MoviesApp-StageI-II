@@ -33,12 +33,9 @@ public class DetailsActivity extends AppCompatActivity {
         mTitle = (TextView) findViewById(R.id.title_display);
         mDate = (TextView) findViewById(R.id.date_display);
         mRating = (TextView) findViewById(R.id.rating_display);
-        TextView mPlotTitle = (TextView) findViewById(R.id.plot_display);
         mPlotSummary = (TextView) findViewById(R.id.plot_summary);
         mPoster = (ImageView) findViewById(R.id.poster_display);
         mRatingBar = (RatingBar) findViewById(R.id.simpleRatingBar);
-        TextView mTextDate = (TextView) findViewById(R.id.text_date);
-        TextView mTextRating = (TextView) findViewById(R.id.text_rating);
         //Change the stars color in ratingBar to yellow
         LayerDrawable stars = (LayerDrawable) mRatingBar.getProgressDrawable();
         stars.getDrawable(2).setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
