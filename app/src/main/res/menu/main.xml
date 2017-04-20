@@ -18,6 +18,12 @@
             android:checked="false"
             app:showAsAction="never"
             android:id="@+id/action_topRated" />
+        <item
+            android:title="@string/favorites"
+            android:orderInCategory="3"
+            android:checked="false"
+            app:showAsAction="never"
+            android:id="@+id/action_favorites" />
     </group>
 
 </menu>

@@ -8,4 +8,5 @@
     <string name="summary">Summary</string>
     <string name="rating">Users rating:</string>
     <string name="date">Release year:</string>
+    <string name="favorites">My Favorites</string>
 </resources>

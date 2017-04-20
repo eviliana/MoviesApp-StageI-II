@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerAdap
     /**
      * This is a workaround to help me pass click listener in onPostExecute :)
      */
-    private void populateAdapter(){
+    public void populateAdapter(){
         mAdapter = new MovieRecyclerAdapter(context, moviesList, this);
         mRecyclerView.setAdapter(mAdapter);
     }
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerAdap
     private void fetchMovieData(String qParam) {
         String apiKey = getString(R.string.myApiKey);
         URL movieQueryUrl = Queries.buildMovieUrl(qParam, apiKey);
-        AsyncTaskCall at = new AsyncTaskCall();
+        AsyncTaskCall at = new AsyncTaskCall(this, new FetchMyDataTaskCompleteListener());
         at.execute(movieQueryUrl);
     }
 
@@ -127,6 +127,17 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerAdap
                     //mRecyclerView.setAdapter(null); in case we want to clear the images from previous call
                 }
                 break;
+            case R.id.action_favorites:
+            if (NetworkUtils.hasNetworkAcces(this)){
+                //fetchMovieData("top_rated");
+                if(!item.isChecked()){
+                    item.setChecked(true);
+                }
+            } else {
+                Toast.makeText(context,"Internet connection failed, please try again",Toast.LENGTH_SHORT).show();
+                //mRecyclerView.setAdapter(null); in case we want to clear the images from previous call
+            }
+            break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -139,44 +150,14 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerAdap
         startActivity(intentToStartDetailsActivity);
     }
 
-    /**
-     * The AsyncTaskCall handles the http call in a background thread
-     * and calls getMovieDataFromJSON which parses the JSON data into
-     * movie objects
-     */
-    public class AsyncTaskCall extends AsyncTask<URL, Void, ArrayList<Movie>> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            //Toast.makeText(context, "The data is downloading", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        protected ArrayList<Movie> doInBackground(URL... urls) {
-            URL tmdbURL = urls[0];
-            String jsonResults = null;
-            try {
-                jsonResults = NetworkUtils.getResponseFromHttpUrl(tmdbURL);
-                if (jsonResults != null) {
-                    moviesList = getMovieDataFromJSON(jsonResults);
-                }
-                    return moviesList;
-            } catch (IOException e) {
-                e.printStackTrace();
-                return null;
-            } catch (JSONException e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
-
+    public class FetchMyDataTaskCompleteListener implements AsyncTaskCompleteListener<ArrayList<Movie>>
+    {
         /**
-         *Get the movieList and popoulate the adapter
-         * @param moviesList
+         * @param result The resulting object from the AsyncTask.
          */
         @Override
-        protected void onPostExecute(ArrayList<Movie> moviesList) {
+        public void onTaskComplete(ArrayList<Movie> result) {
+            moviesList = result;
             if (moviesList != null && !moviesList.equals("")) {
                 populateAdapter();
             }
