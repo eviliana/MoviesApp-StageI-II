@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary">
@@ -16,7 +17,8 @@
                 android:gravity="center"
                 android:textSize="@dimen/abc_text_size_headline_material"/>
 
-            <include layout="@layout/details_section"/>
+            <include layout="@layout/details_section"
+                android:id="@+id/details_section" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,4 +47,5 @@
 
             </LinearLayout>
         </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</layout>

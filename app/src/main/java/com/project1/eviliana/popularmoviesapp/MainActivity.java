@@ -1,25 +1,18 @@
 package com.project1.eviliana.popularmoviesapp;
 
-import static com.project1.eviliana.popularmoviesapp.utils.JsonDataParser.getMovieDataFromJSON;
 import com.project1.eviliana.popularmoviesapp.adapter.MovieRecyclerAdapter;
 import com.project1.eviliana.popularmoviesapp.model.Movie;
 import com.project1.eviliana.popularmoviesapp.utils.*;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Parcelable;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
-import org.json.JSONException;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -47,6 +40,10 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerAdap
         int numberOfColumns = 2; //2 columns for the GridLayoutManager
         layoutManager = new GridLayoutManager(context, numberOfColumns);
 
+        //If in Landscape orientation, make number of columns 3 instead of 2
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            layoutManager.setSpanCount(3);
+        }
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
 

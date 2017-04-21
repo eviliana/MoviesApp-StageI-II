@@ -1,82 +1,84 @@
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:weightSum="2"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <ImageView
-        android:id="@+id/poster_display"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:padding="@dimen/pad_5"
-        android:paddingTop="@dimen/pad_10"
-        android:adjustViewBounds="true"/>
+        android:orientation="horizontal"
+        android:weightSum="2"
+        >
 
-    <LinearLayout android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:padding="@dimen/pad_5"
-        android:layout_gravity="center"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/poster_display"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/date"
-                android:id="@+id/text_date"
-                android:paddingTop="@dimen/pad_20"
-                android:paddingLeft="@dimen/pad_5"
-                android:layout_weight="1"
-                android:textSize="@dimen/text_16" />
+            android:layout_weight="1"
+            android:padding="@dimen/pad_5"
+            android:paddingTop="@dimen/pad_10"
+            android:adjustViewBounds="true"/>
 
-            <TextView
-                android:id="@+id/date_display"
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/pad_5"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date"
+                    android:id="@+id/text_date"
+                    android:paddingTop="@dimen/pad_20"
+                    android:paddingLeft="@dimen/pad_5"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/text_16" />
+
+                <TextView
+                    android:id="@+id/date_display"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/pad_5"
+                    android:paddingLeft="@dimen/pad_2"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/text_16" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/pad_20"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rating"
+                    android:id="@+id/text_rating"
+                    android:paddingTop="@dimen/pad_20"
+                    android:paddingLeft="@dimen/pad_5"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/text_16" />
+                <TextView
+                    android:id="@+id/rating_display"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/pad_5"
+                    android:paddingLeft="@dimen/pad_2"
+                    android:layout_weight="0"
+                    android:textSize="@dimen/text_16" />
+            </LinearLayout>
+            <RatingBar
+                android:id="@+id/simpleRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                style="?android:attr/ratingBarStyleSmall"
+                android:stepSize="1"
                 android:paddingTop="@dimen/pad_5"
-                android:paddingLeft="@dimen/pad_2"
-                android:layout_weight="1"
-                android:textSize="@dimen/text_16" />
+                android:paddingLeft="@dimen/pad_8"/>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/pad_20"
-            android:weightSum="2">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/rating"
-                android:id="@+id/text_rating"
-                android:paddingTop="@dimen/pad_20"
-                android:paddingLeft="@dimen/pad_5"
-                android:layout_weight="1"
-                android:textSize="@dimen/text_16" />
-            <TextView
-                android:id="@+id/rating_display"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="@dimen/pad_5"
-                android:paddingLeft="@dimen/pad_2"
-                android:layout_weight="0"
-                android:textSize="@dimen/text_16" />
-        </LinearLayout>
-        <RatingBar
-            android:id="@+id/simpleRatingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="5"
-            style="?android:attr/ratingBarStyleSmall"
-            android:stepSize="1"
-            android:paddingTop="@dimen/pad_5"
-            android:paddingLeft="@dimen/pad_8"/>
     </LinearLayout>
-</LinearLayout>
+</layout>

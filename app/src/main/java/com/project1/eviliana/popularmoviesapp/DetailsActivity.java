@@ -1,6 +1,7 @@
 package com.project1.eviliana.popularmoviesapp;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
@@ -8,36 +9,25 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.TextView;
+
+
+import com.project1.eviliana.popularmoviesapp.databinding.ActivityDetailsBinding;
 import com.project1.eviliana.popularmoviesapp.model.Movie;
 import com.project1.eviliana.popularmoviesapp.utils.Queries;
 import com.squareup.picasso.Picasso;
 
 public class DetailsActivity extends AppCompatActivity {
 
-    private TextView mTitle;
-    private TextView mDate;
-    private TextView mRating;
-    private TextView mPlotSummary;
-    private ImageView mPoster;
-    private RatingBar mRatingBar;
     private Movie movieItem;
+    ActivityDetailsBinding mBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details);
+        mBinding = DataBindingUtil.setContentView(this,R.layout.activity_details);
 
-        mTitle = (TextView) findViewById(R.id.title_display);
-        mDate = (TextView) findViewById(R.id.date_display);
-        mRating = (TextView) findViewById(R.id.rating_display);
-        mPlotSummary = (TextView) findViewById(R.id.plot_summary);
-        mPoster = (ImageView) findViewById(R.id.poster_display);
-        mRatingBar = (RatingBar) findViewById(R.id.simpleRatingBar);
         //Change the stars color in ratingBar to yellow
-        LayerDrawable stars = (LayerDrawable) mRatingBar.getProgressDrawable();
+        LayerDrawable stars = (LayerDrawable) mBinding.detailsSection.simpleRatingBar.getProgressDrawable();
         stars.getDrawable(2).setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -45,14 +35,14 @@ public class DetailsActivity extends AppCompatActivity {
         Intent intentThatStartedThisActivity = getIntent();
         if (intentThatStartedThisActivity.hasExtra(MainActivity.MOVIE_ITEM)){
             movieItem = intentThatStartedThisActivity.getParcelableExtra(MainActivity.MOVIE_ITEM);
-            mTitle.setText(movieItem.getOriginalTitle());
+            mBinding.titleDisplay.setText(movieItem.getOriginalTitle());
             //workaround to get the year
-            mDate.setText(movieItem.getReleaseDate().substring(0,4));
+            mBinding.detailsSection.dateDisplay.setText(movieItem.getReleaseDate().substring(0,4));
             //workaround to rate with a scale from 1 to 5 instead of 10
             float convert = (float) (movieItem.getVoteAverage() / 2);
-            mRatingBar.setRating(convert);
-            mRating.setText(Double.toString(movieItem.getVoteAverage()) + "/10");
-            mPlotSummary.setText(movieItem.getOverview());
+            mBinding.detailsSection.simpleRatingBar.setRating(convert);
+            mBinding.detailsSection.ratingDisplay.setText(Double.toString(movieItem.getVoteAverage()) + "/10");
+            mBinding.plotSummary.setText(movieItem.getOverview());
             usePicasso();
         }
 
@@ -70,7 +60,7 @@ public class DetailsActivity extends AppCompatActivity {
                 .load(url)
                 .placeholder(R.drawable.loading_icon)
                 .error(R.drawable.nodisplay)
-                .into(mPoster);
+                .into(mBinding.detailsSection.posterDisplay);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
