@@ -7,6 +7,7 @@ import com.project1.eviliana.popularmoviesapp.utils.*;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerAdap
     private MovieRecyclerAdapter mAdapter;
     private RecyclerView mRecyclerView;
     protected final static String MOVIE_ITEM = "movie_item";
+    private final static String RECYCLER_STATE = "recycler_state";
+    private final static String MENU_SELECTED = "selected";
+    private int selected = -1;
+    GridLayoutManager layoutManager;
     private Context context = MainActivity.this;
 
     @Override
@@ -40,10 +45,18 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerAdap
         mRecyclerView = (RecyclerView) findViewById(R.id.posters_recycler);
 
         int numberOfColumns = 2; //2 columns for the GridLayoutManager
-        GridLayoutManager layoutManager = new GridLayoutManager(context, numberOfColumns);
+        layoutManager = new GridLayoutManager(context, numberOfColumns);
 
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
+
+        if (savedInstanceState != null){
+            //Restore recycler state and menu choice
+            selected = savedInstanceState.getInt(MENU_SELECTED);
+            moviesList = savedInstanceState.getParcelableArrayList(RECYCLER_STATE);
+            mAdapter = new MovieRecyclerAdapter(context, moviesList, this);
+            mRecyclerView.setAdapter(mAdapter);
+            }
     }
 
     /**
@@ -55,14 +68,21 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerAdap
         super.onResume();
         if (moviesList.size() == 0){
             if (NetworkUtils.hasNetworkAcces(this)){
-                loadPosters();
+                fetchMovieData("popular");
             } else {
                 Toast.makeText(context,"Internet connection failed, please try again",Toast.LENGTH_SHORT).show();
             }
         }
     }
-    private void loadPosters() {
-        fetchMovieData("popular");
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        //Save recycler state
+        outState.putParcelableArrayList(RECYCLER_STATE, moviesList);
+        //Save menu choice
+        outState.putInt(MENU_SELECTED,selected);
     }
 
     /**
@@ -93,7 +113,24 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerAdap
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-        menu.findItem(R.id.action_popular).setChecked(true);
+
+        //check if there is an id from screen rotation and choose the correct menu item
+        //solution from stackoverflow
+        switch (selected){
+            case R.id.action_popular:
+                menu.findItem(R.id.action_popular).setChecked(true);
+                break;
+            case R.id.action_topRated:
+                menu.findItem(R.id.action_topRated).setChecked(true);
+                break;
+            case R.id.action_favorites:
+                menu.findItem(R.id.action_favorites).setChecked(true);
+                break;
+            default:
+                //The app initializes with a "most popular" call, so if no saved menu id,
+                //set most popular as choice
+                menu.findItem(R.id.action_popular).setChecked(true);
+        }
         return true;
     }
 
@@ -107,7 +144,8 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerAdap
         switch (item.getItemId()) {
             case R.id.action_popular:
                if (NetworkUtils.hasNetworkAcces(this)){
-                    fetchMovieData("popular");
+                   fetchMovieData("popular");
+                   selected = item.getItemId();
                    if(!item.isChecked()){
                        item.setChecked(true);
                    }
@@ -119,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerAdap
             case R.id.action_topRated:
                 if (NetworkUtils.hasNetworkAcces(this)){
                     fetchMovieData("top_rated");
+                    selected = item.getItemId();
                     if(!item.isChecked()){
                         item.setChecked(true);
                     }
@@ -130,6 +169,7 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerAdap
             case R.id.action_favorites:
             if (NetworkUtils.hasNetworkAcces(this)){
                 //fetchMovieData("top_rated");
+                selected = item.getItemId();
                 if(!item.isChecked()){
                     item.setChecked(true);
                 }
