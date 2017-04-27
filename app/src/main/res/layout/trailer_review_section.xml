@@ -1,0 +1,45 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/trailer_display"
+            android:text="@string/trailer"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pad_2"
+            android:layout_margin="@dimen/pad_3"
+            android:background="@color/colorPrimaryDark"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/trailers_recycler">
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/review_display"
+            android:text="@string/review"
+            android:textSize="@dimen/abc_text_size_medium_material" />
+
+        <View
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/pad_2"
+          android:layout_margin="@dimen/pad_3"
+          android:background="@color/colorPrimaryDark"
+          android:textSize="@dimen/abc_text_size_medium_material" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/reviews_recycler">
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+</layout>

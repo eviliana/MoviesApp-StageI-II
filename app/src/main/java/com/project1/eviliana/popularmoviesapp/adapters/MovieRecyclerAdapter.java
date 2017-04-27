@@ -1,4 +1,4 @@
-package com.project1.eviliana.popularmoviesapp.adapter;
+package com.project1.eviliana.popularmoviesapp.adapters;
 
 
 import android.content.Context;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.project1.eviliana.popularmoviesapp.R;
-import com.project1.eviliana.popularmoviesapp.model.Movie;
+import com.project1.eviliana.popularmoviesapp.models.Movie;
 import com.project1.eviliana.popularmoviesapp.utils.Queries;
 import com.squareup.picasso.Picasso;
 

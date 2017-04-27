@@ -1,4 +1,4 @@
-package com.project1.eviliana.popularmoviesapp.model;
+package com.project1.eviliana.popularmoviesapp.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

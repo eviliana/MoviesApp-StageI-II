@@ -1,10 +1,10 @@
-package com.project1.eviliana.popularmoviesapp.utils;
+package com.project1.eviliana.popularmoviesapp.asyncs;
 
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.project1.eviliana.popularmoviesapp.MainActivity;
-import com.project1.eviliana.popularmoviesapp.model.Movie;
+import com.project1.eviliana.popularmoviesapp.models.Movie;
+import com.project1.eviliana.popularmoviesapp.utils.NetworkUtils;
 
 import org.json.JSONException;
 
@@ -19,13 +19,13 @@ import static com.project1.eviliana.popularmoviesapp.utils.JsonDataParser.getMov
  * and calls getMovieDataFromJSON which parses the JSON data into
  * movie objects
  */
-public class AsyncTaskCall extends AsyncTask<URL, Void, ArrayList<Movie>> {
+public class AsyncMovieCall extends AsyncTask<URL, Void, ArrayList<Movie>> {
 
     private Context context;
     private ArrayList<Movie> moviesList;
     private AsyncTaskCompleteListener<ArrayList<Movie>> listener;
 
-    public AsyncTaskCall(Context cnt, AsyncTaskCompleteListener<ArrayList<Movie>> lsnr)
+    public AsyncMovieCall(Context cnt, AsyncTaskCompleteListener<ArrayList<Movie>> lsnr)
     {
         this.context = cnt;
         this.listener = lsnr;

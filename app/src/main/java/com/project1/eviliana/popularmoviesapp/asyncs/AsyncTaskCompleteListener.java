@@ -1,8 +1,4 @@
-package com.project1.eviliana.popularmoviesapp.utils;
-
-import com.project1.eviliana.popularmoviesapp.model.Movie;
-
-import java.util.ArrayList;
+package com.project1.eviliana.popularmoviesapp.asyncs;
 
 /**
  * This is a useful callback mechanism so we can abstract our AsyncTasks out into separate, re-usable

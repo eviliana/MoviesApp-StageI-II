@@ -1,7 +1,9 @@
 package com.project1.eviliana.popularmoviesapp;
 
-import com.project1.eviliana.popularmoviesapp.adapter.MovieRecyclerAdapter;
-import com.project1.eviliana.popularmoviesapp.model.Movie;
+import com.project1.eviliana.popularmoviesapp.adapters.MovieRecyclerAdapter;
+import com.project1.eviliana.popularmoviesapp.asyncs.AsyncMovieCall;
+import com.project1.eviliana.popularmoviesapp.asyncs.AsyncTaskCompleteListener;
+import com.project1.eviliana.popularmoviesapp.models.Movie;
 import com.project1.eviliana.popularmoviesapp.utils.*;
 import android.content.Context;
 import android.content.Intent;
@@ -85,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerAdap
     /**
      * This is a workaround to help me pass click listener in onPostExecute :)
      */
-    public void populateAdapter(){
+    private void populateAdapter(){
         mAdapter = new MovieRecyclerAdapter(context, moviesList, this);
         mRecyclerView.setAdapter(mAdapter);
     }
@@ -98,8 +100,8 @@ public class MainActivity extends AppCompatActivity implements MovieRecyclerAdap
     private void fetchMovieData(String qParam) {
         String apiKey = getString(R.string.myApiKey);
         URL movieQueryUrl = Queries.buildMovieUrl(qParam, apiKey);
-        AsyncTaskCall at = new AsyncTaskCall(this, new FetchMyDataTaskCompleteListener());
-        at.execute(movieQueryUrl);
+        AsyncMovieCall am = new AsyncMovieCall(this, new FetchMyDataTaskCompleteListener());
+        am.execute(movieQueryUrl);
     }
 
     /**
